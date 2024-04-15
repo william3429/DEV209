@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +7,13 @@
 </head>
 <body>
     <ul id="myList"></ul>
-    <button onclick="convertToCaps()">CAPS</button>
+    <button onclick="toggleCase()">CAPS</button>
     <button onclick="changeColor()">RED</button>
     <button onclick="swapLetters()">SWAP</button>
 
     <script>
         let words = [];
+        let capsToggle = false;
 
         function displayWords() {
             const list = document.getElementById("myList");
@@ -24,9 +25,14 @@
             });
         }
 
-        function convertToCaps() {
-            const capitalizedWords = words.map(word => word.toUpperCase());
-            words = capitalizedWords;
+        function toggleCase() {
+            if (capsToggle) {
+                words = words.map(word => word.toLowerCase());
+                capsToggle = false;
+            } else {
+                words = words.map(word => word.toUpperCase());
+                capsToggle = true;
+            }
             displayWords();
         }
 
