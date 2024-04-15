@@ -1,0 +1,55 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Events</title>
+</head>
+<body>
+    <ul id="myList"></ul>
+    <button onclick="convertToCaps()">CAPS</button>
+    <button onclick="changeColor()">RED</button>
+    <button onclick="swapLetters()">SWAP</button>
+
+    <script>
+        let words = [];
+
+        function displayWords() {
+            const list = document.getElementById("myList");
+            list.innerHTML = "";
+            words.forEach(word => {
+                const listItem = document.createElement("li");
+                listItem.textContent = word;
+                list.appendChild(listItem);
+            });
+        }
+
+        function convertToCaps() {
+            const capitalizedWords = words.map(word => word.toUpperCase());
+            words = capitalizedWords;
+            displayWords();
+        }
+
+        function changeColor() {
+            const listItems = document.querySelectorAll("#myList li");
+            listItems.forEach(item => {
+                item.style.color = "red";
+            });
+        }
+
+        function swapLetters() {
+            const swappedWords = words.map(word =>
+                word.charAt(word.length - 1) + word.substring(1, word.length - 1) + word.charAt(0)
+            );
+            words = swappedWords;
+            displayWords();
+        }
+
+        for (let i = 0; i < 3; i++) {
+            const word = prompt("Enter a word:");
+            words.push(word);
+        }
+        displayWords();
+    </script>
+</body>
+</html>
